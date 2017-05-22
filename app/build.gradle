@@ -1,4 +1,8 @@
 apply plugin: 'com.android.application'
+// Application du plugin Kotlin
+apply plugin: 'kotlin-android'
+
+def anko_version = '0.10.0'
 
 android {
     compileSdkVersion 25
@@ -6,7 +10,7 @@ android {
     defaultConfig {
         applicationId "nhelfer.agon"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -21,6 +25,26 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Ajout de la dépendance à la bibliothèque Kotlin
+    compile 'org.jetbrains.kotlin:kotlin-stdlib'
+
+    // Ajout des dépendances à la bibliothèque Anko
+    // Anko Commons
+    compile "org.jetbrains.anko:anko-commons:$anko_version"
+    compile 'org.jetbrains.anko:anko-support-v4' // In case you need support-v4 bindings
+
+    // Anko Layouts
+    compile "org.jetbrains.anko:anko-sdk25:$anko_version" // sdk15, sdk19, sdk21, sdk23 are also available
+    compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version" // For appcompat-v7 bindin
+
+    // Coroutine listeners for Anko Layouts
+    compile "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
+    //compile "org.jetbrains.anko:anko-appcompat-v7-couroutines:$anko_version"
+
+    // Anko SQLite
+    compile "org.jetbrains.anko:anko-sqlite:$anko_version"
+
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
